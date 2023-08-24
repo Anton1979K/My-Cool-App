@@ -1,0 +1,88 @@
+import React from 'react';
+import {createRoot} from 'react-dom/client';
+
+const domNode = document.getElementById("root");
+const root = createRoot(domNode);
+
+//function TodoList () {} - тот же аналог стрелочной ф-ции
+const TodoList = () => {
+
+  const items = ['Drink Coffe','Build React App','Watch Movie'];
+
+  const SecondEl = items[1];
+
+
+return (
+  <ul>
+
+    <li>{ items[0] }</li>
+    <li>Drink Coffe</li>
+    <li>{  SecondEl }</li>
+    <li>Build React App</li>
+    <li>Watch Movie</li>
+    <li>{ (new Date()).toString() }</li>
+  
+  
+  </ul>
+);
+}
+
+const AppHeader = () => {
+  //return React.createElement('h1', null, 'My Cool App'); - это аналог написаного ниже!!!
+ return ( <h1>My Cool App</h1> );
+}
+
+const SearchPanel = () => {
+
+//только для JS эти имена такие
+//остальные св-ва как и в HTML
+//class-> className
+//for -> htmlFor
+//float - > 
+//Complete = autoComplete
+
+  const searchText = 'Type here to search';
+  const st = {fontSize: '20px', display: 'flex'}
+
+
+
+  //return (<input placeholder='search'/>);
+  return (<input 
+        placeholder={searchText}
+        className={'search-input'}
+        style={st}
+        />
+        );
+}
+
+const App = () => { 
+
+  const isLogin = true;
+
+  const loginBox  = isLogin ? null : <span>Log in please....</span>;
+  
+  // Это аналог
+  //if () {} 
+  //else if () {}
+
+
+  // { !isLogin && <span>Log in please....</span> }  - такая конструкция это условный рендеринг
+
+  //React.Fragment = пустой тэг Реакта!!! или просто <></>
+ return (<React.Fragment> 
+
+    { loginBox }
+    { !isLogin && <span>Log in please....</span> }  
+    <AppHeader />
+    <SearchPanel />
+    <TodoList />  
+   
+  </React.Fragment> );
+  
+};
+
+//console.log(App);
+
+//root.render(App); -если ф-ция не как компонент. то так ее рендерим
+// если ф-ия написана как компонент то рендер ее идет так: root.render(<App />);
+root.render(<App />);
